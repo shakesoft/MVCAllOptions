@@ -1,0 +1,25 @@
+<Solution>
+    <Configurations>
+        <Platform Name="Any CPU" />
+    </Configurations>
+    <Folder Name="/src/">
+        <Project Path="src/MVCAllOptions.Domain/MVCAllOptions.Domain.csproj" />
+        <Project Path="src/MVCAllOptions.Application/MVCAllOptions.Application.csproj" />
+        <Project Path="src/MVCAllOptions.EntityFrameworkCore/MVCAllOptions.EntityFrameworkCore.csproj" />
+        <Project Path="src/MVCAllOptions.Web/MVCAllOptions.Web.csproj" />
+        <Project Path="src/MVCAllOptions.Domain.Shared/MVCAllOptions.Domain.Shared.csproj" />
+        <Project Path="src/MVCAllOptions.Application.Contracts/MVCAllOptions.Application.Contracts.csproj" />
+        <Project Path="src/MVCAllOptions.HttpApi/MVCAllOptions.HttpApi.csproj" />
+        <Project Path="src/MVCAllOptions.HttpApi.Client/MVCAllOptions.HttpApi.Client.csproj" />
+        <Project Path="src/MVCAllOptions.DbMigrator/MVCAllOptions.DbMigrator.csproj" />
+        <Project Path="src/MVCAllOptions.Web.Public/MVCAllOptions.Web.Public.csproj" />
+    </Folder>
+    <Folder Name="/test/">
+        <Project Path="test/MVCAllOptions.Application.Tests/MVCAllOptions.Application.Tests.csproj" />
+        <Project Path="test/MVCAllOptions.Web.Tests/MVCAllOptions.Web.Tests.csproj" />
+        <Project Path="test/MVCAllOptions.EntityFrameworkCore.Tests/MVCAllOptions.EntityFrameworkCore.Tests.csproj" />
+        <Project Path="test/MVCAllOptions.TestBase/MVCAllOptions.TestBase.csproj" />
+        <Project Path="test/MVCAllOptions.Domain.Tests/MVCAllOptions.Domain.Tests.csproj" />
+        <Project Path="test/MVCAllOptions.HttpApi.Client.ConsoleTestApp/MVCAllOptions.HttpApi.Client.ConsoleTestApp.csproj" />
+    </Folder>
+</Solution>

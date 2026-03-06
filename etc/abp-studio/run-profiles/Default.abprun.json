@@ -1,0 +1,50 @@
+﻿{
+  "applications": {
+    "MVCAllOptions.Web.Public": {
+      "type": "dotnet-project",
+      "launchUrl": "https://localhost:44372",
+      "path": "../../../src/MVCAllOptions.Web.Public/MVCAllOptions.Web.Public.csproj",
+      "kubernetesService": ".*-webpublic$",
+      "healthCheckEndpoint": "/health-status",
+      "healthUiEndpoint": "/health-ui",
+      "execution": {
+        "order": 1
+      }
+    },
+    "MVCAllOptions.Web": {
+      "type": "dotnet-project",
+      "launchUrl": "https://localhost:44324",
+      "path": "../../../src/MVCAllOptions.Web/MVCAllOptions.Web.csproj",
+      "kubernetesService": ".*-web$",
+      "healthCheckEndpoint": "/health-status",
+      "healthUiEndpoint": "/health-ui",
+      "execution": {
+        "order": 2
+      }
+    }
+  },
+  "containers": {
+    "serviceName": "MVCAllOptions-Containers",
+    "files": {
+      "../../docker/containers/redis.yml": {
+      },
+      "../../docker/containers/rabbitmq.yml": {
+      }
+      
+    }
+  },
+  "tasks":{
+    "Initialize Solution":{
+      "behaviour": 2,
+      "startCommand": "./initialize-solution.ps1",
+      "workingDirectory": "../../scripts",
+      "shortDescription": "Installs required UI libraries, creates required certificates and seeds the database."
+    },
+    "Migrate Database":{
+      "behaviour": 0,
+      "startCommand": "./migrate-database.ps1",
+      "workingDirectory": "../../scripts",
+      "shortDescription": "Migrates the database to the latest version."
+    }
+  }
+}

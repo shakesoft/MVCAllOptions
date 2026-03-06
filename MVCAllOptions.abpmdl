@@ -1,0 +1,178 @@
+{
+  "template": "app",
+  "imports": {
+    "Volo.Abp.LeptonXTheme": {
+      "version": "5.2.0-rc.1",
+      "isInstalled": true,
+      "creationTime": "03/04/2026 07:59:10 +00:00"
+    },
+    "Volo.Abp.TextTemplateManagement": {
+      "version": "10.2.0-rc.1",
+      "isInstalled": true,
+      "creationTime": "03/04/2026 07:59:10 +00:00"
+    },
+    "Volo.AIManagement": {
+      "version": "10.2.0-rc.1",
+      "isInstalled": true,
+      "creationTime": "03/04/2026 07:59:10 +00:00"
+    },
+    "Volo.Chat": {
+      "version": "10.2.0-rc.1",
+      "isInstalled": true,
+      "creationTime": "03/04/2026 07:59:10 +00:00"
+    },
+    "Volo.Abp.LanguageManagement": {
+      "version": "10.2.0-rc.1",
+      "isInstalled": true,
+      "creationTime": "03/04/2026 07:59:10 +00:00"
+    },
+    "Volo.FileManagement": {
+      "version": "10.2.0-rc.1",
+      "isInstalled": true,
+      "creationTime": "03/04/2026 07:59:10 +00:00"
+    },
+    "Volo.Abp.OpenIddict.Pro": {
+      "version": "10.2.0-rc.1",
+      "isInstalled": true,
+      "creationTime": "03/04/2026 07:59:10 +00:00"
+    },
+    "Volo.Abp.Gdpr": {
+      "version": "10.2.0-rc.1",
+      "isInstalled": true,
+      "creationTime": "03/04/2026 07:59:10 +00:00"
+    },
+    "Volo.Abp.AuditLogging.Pro": {
+      "version": "10.2.0-rc.1",
+      "isInstalled": true,
+      "creationTime": "03/04/2026 07:59:10 +00:00"
+    },
+    "Volo.CmsKit.Pro": {
+      "version": "10.2.0-rc.1",
+      "isInstalled": true,
+      "creationTime": "03/04/2026 07:59:10 +00:00"
+    },
+    "Volo.Saas": {
+      "version": "10.2.0-rc.1",
+      "isInstalled": true,
+      "creationTime": "03/04/2026 07:59:10 +00:00"
+    },
+    "Volo.Abp.Identity.Pro": {
+      "version": "10.2.0-rc.1",
+      "isInstalled": true,
+      "creationTime": "03/04/2026 07:59:10 +00:00"
+    },
+    "Volo.Abp.Account.Pro": {
+      "version": "10.2.0-rc.1",
+      "isInstalled": true,
+      "creationTime": "03/04/2026 07:59:10 +00:00"
+    },
+    "Volo.Abp.SettingManagement": {
+      "version": "10.2.0-rc.1",
+      "isInstalled": true,
+      "creationTime": "03/04/2026 07:59:10 +00:00"
+    },
+    "Volo.Abp.PermissionManagement": {
+      "version": "10.2.0-rc.1",
+      "isInstalled": true,
+      "creationTime": "03/04/2026 07:59:10 +00:00"
+    },
+    "Volo.Abp.FeatureManagement": {
+      "version": "10.2.0-rc.1",
+      "isInstalled": true,
+      "creationTime": "03/04/2026 07:59:10 +00:00"
+    },
+    "Volo.Forms": {
+      "version": "10.2.0-rc.1",
+      "isInstalled": true
+    },
+    "Volo.Abp.Elsa": {
+      "version": "10.2.0-rc.1",
+      "isInstalled": true
+    },
+    "Volo.Payment": {
+      "version": "10.2.0-rc.1",
+      "isInstalled": true
+    },
+    "Volo.Abp.Sms.Twilio": {
+      "version": "10.1.1"
+    },
+    "Volo.Blogging": {
+      "version": "10.2.0-rc.1"
+    },
+    "Volo.Docs": {
+      "version": "10.2.0-rc.1"
+    }
+  },
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {}
+    }
+  },
+  "packages": {
+    "MVCAllOptions.Application": {
+      "path": "src/MVCAllOptions.Application/MVCAllOptions.Application.abppkg",
+      "folder": "src"
+    },
+    "MVCAllOptions.Application.Tests": {
+      "path": "test/MVCAllOptions.Application.Tests/MVCAllOptions.Application.Tests.abppkg",
+      "folder": "test"
+    },
+    "MVCAllOptions.Domain.Shared": {
+      "path": "src/MVCAllOptions.Domain.Shared/MVCAllOptions.Domain.Shared.abppkg",
+      "folder": "src"
+    },
+    "MVCAllOptions.Application.Contracts": {
+      "path": "src/MVCAllOptions.Application.Contracts/MVCAllOptions.Application.Contracts.abppkg",
+      "folder": "src"
+    },
+    "MVCAllOptions.HttpApi": {
+      "path": "src/MVCAllOptions.HttpApi/MVCAllOptions.HttpApi.abppkg",
+      "folder": "src"
+    },
+    "MVCAllOptions.HttpApi.Client": {
+      "path": "src/MVCAllOptions.HttpApi.Client/MVCAllOptions.HttpApi.Client.abppkg",
+      "folder": "src"
+    },
+    "MVCAllOptions.Web": {
+      "path": "src/MVCAllOptions.Web/MVCAllOptions.Web.abppkg",
+      "folder": "src"
+    },
+    "MVCAllOptions.Web.Tests": {
+      "path": "test/MVCAllOptions.Web.Tests/MVCAllOptions.Web.Tests.abppkg",
+      "folder": "test"
+    },
+    "MVCAllOptions.EntityFrameworkCore.Tests": {
+      "path": "test/MVCAllOptions.EntityFrameworkCore.Tests/MVCAllOptions.EntityFrameworkCore.Tests.abppkg",
+      "folder": "test"
+    },
+    "MVCAllOptions.EntityFrameworkCore": {
+      "path": "src/MVCAllOptions.EntityFrameworkCore/MVCAllOptions.EntityFrameworkCore.abppkg",
+      "folder": "src"
+    },
+    "MVCAllOptions.TestBase": {
+      "path": "test/MVCAllOptions.TestBase/MVCAllOptions.TestBase.abppkg",
+      "folder": "test"
+    },
+    "MVCAllOptions.Domain.Tests": {
+      "path": "test/MVCAllOptions.Domain.Tests/MVCAllOptions.Domain.Tests.abppkg",
+      "folder": "test"
+    },
+    "MVCAllOptions.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/MVCAllOptions.HttpApi.Client.ConsoleTestApp/MVCAllOptions.HttpApi.Client.ConsoleTestApp.abppkg",
+      "folder": "test"
+    },
+    "MVCAllOptions.DbMigrator": {
+      "path": "src/MVCAllOptions.DbMigrator/MVCAllOptions.DbMigrator.abppkg",
+      "folder": "src"
+    },
+    "MVCAllOptions.Web.Public": {
+      "path": "src/MVCAllOptions.Web.Public/MVCAllOptions.Web.Public.abppkg",
+      "folder": "src"
+    },
+    "MVCAllOptions.Domain": {
+      "path": "src/MVCAllOptions.Domain/MVCAllOptions.Domain.abppkg",
+      "folder": "src"
+    }
+  }
+}
