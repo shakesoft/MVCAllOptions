@@ -21,9 +21,11 @@ case "$tool_name" in
     ;;
 esac
 
-# Emit a systemMessage asking the agent to run the code-review skill
+# Emit a userMessage that actually triggers the code-review skill automatically.
+# Returning a `userMessage` causes the agent to treat it like user input,
+# so the slash command is fired without requiring manual intervention.
 cat <<'EOF'
 {
-  "systemMessage": "You just made code changes. Please invoke the `code-review` skill to review all local changes (staged and unstaged) against the ABP Framework rules defined in `.cursor/rules/` and `.github/copilot-instructions.md`. Run: `/code-review` with scope 'all local changes' (staged + unstaged). Produce the full structured review report."
+  "userMessage": "/code-review all local changes"
 }
 EOF
