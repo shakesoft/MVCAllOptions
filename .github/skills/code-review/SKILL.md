@@ -77,7 +77,7 @@ For each changed file, identify which layers/categories it belongs to and apply 
 
 ### Step 4 — Produce a Structured Review Report
 
-Output the review in this structure:
+Output the review in this structure. For any fixable issue include a **before/after code snippet** to illustrate the change.
 
 ```
 ## Code Review Report
@@ -90,13 +90,17 @@ Output the review in this structure:
 ### <File or Feature Name>
 
 #### 🔴 CRITICAL
-- [<Rule>] Description of violation + line reference + suggested fix
+- [<Rule>] Description of violation + line reference + suggested fix. 
+  ```diff
+  - // before code
+  + // after code
+  ```
 
 #### 🟠 MAJOR
-- ...
+- ... with before/after example
 
 #### 🟡 MINOR
-- ...
+- ... with before/after example
 
 #### 🟢 GOOD
 - ...
@@ -111,6 +115,8 @@ Short paragraph summarising the overall quality and the ordered list of things t
 
 After delivering the report, ask:
 > "Would you like me to fix any of these findings? If so, which ones?"
+
+When making fixes, include the corresponding before/after code examples in the response so the user can see the change.
 
 Apply fixes only for items the user confirms, following the same rule files.
 
