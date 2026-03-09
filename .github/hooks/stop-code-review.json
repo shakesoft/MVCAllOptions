@@ -1,10 +1,10 @@
 {
   "hooks": {
-    "Stop": [
+    "PostToolUse": [
       {
         "type": "command",
-        "command": ".github/hooks/scripts/stop-code-review.sh",
-        "timeout": 10
+        "command": ".github/hooks/scripts/post-tool-code-review.sh",
+        "timeout": 15
       }
     ]
   }
