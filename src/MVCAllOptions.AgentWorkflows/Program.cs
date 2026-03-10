@@ -6,6 +6,7 @@ using Microsoft.Agents.AI.Workflows;
 using MVCAllOptions.AgentWorkflows.Agents;
 using MVCAllOptions.AgentWorkflows.Workflows.BookReviewWorkflow;
 using MVCAllOptions.AgentWorkflows.Workflows.BookRecommendationWorkflow;
+using MVCAllOptions.AgentWorkflows.Workflows.BookEnrichmentWorkflow;
 
 // ──────────────────────────────────────────────────────────────────────────────
 //  MVCAllOptions.AgentWorkflows
@@ -16,13 +17,8 @@ var builder = WebApplication.CreateBuilder(args);
 var config  = builder.Configuration;
 
 // ── DevUI ─────────────────────────────────────────────────────────────────────
-// Open http://localhost:5000/devui after startup to visualise agents & workflows.
+// Open http://localhost:5001/devui after startup to visualise agents & workflows.
 builder.AddDevUI();
-
-// ── OpenAI Responses & Conversations API endpoints (required by DevUI chat) ──
-// DevUI's "Configure & Run" sends requests to /v1/responses and /v1/conversations
-builder.AddOpenAIResponses();
-builder.AddOpenAIConversations();
 
 // ── Create agents eagerly so the recommender can nest the catalog agent ───────
 var catalogAgent     = BookCatalogAgentFactory.Create(config);
@@ -36,8 +32,14 @@ builder.AddAIAgent("BookRecommenderAgent", (_, _) => recommenderAgent);
 
 // ── Register workflows with named DI keys ────────────────────────────────────
 // The name must match the workflow's internal Name (= first executor's name).
-builder.AddWorkflow("book-review-dispatcher", (_, _) => BookReviewWorkflowFactory.Create(config));
-builder.AddWorkflow("preference-analyzer",    (_, _) => BookRecommendationWorkflowFactory.Create(config));
+builder.AddWorkflow("book-review-dispatcher",  (_, _) => BookReviewWorkflowFactory.Create(config));
+builder.AddWorkflow("preference-analyzer",     (_, _) => BookRecommendationWorkflowFactory.Create(config));
+// BookEnrichmentWorkflow — fires when ABP bookstore creates a new book
+builder.AddWorkflow("book-enrichment-entry",   (_, _) => BookEnrichmentWorkflowFactory.Create(config));
+
+// ── Register OpenAI-compatible services (required by MapOpenAIResponses/Conversations)
+builder.Services.AddOpenAIResponses();
+builder.Services.AddOpenAIConversations();
 
 // ──────────────────────────────────────────────────────────────────────────────
 var app = builder.Build();
@@ -52,6 +54,34 @@ app.MapDevUI();
 app.MapOpenAIResponses();
 app.MapOpenAIConversations();
 
+// ── Book Enrichment endpoint — called by ABP Web when a book is created ───────
+// POST /api/book-enrichment
+// Body: { "name": "...", "type": "...", "price": 0.0, "publishDate": "..." }
+// Runs the BookEnrichmentWorkflow asynchronously and returns 202 Accepted.
+app.MapPost("/api/book-enrichment", async (BookCreatedInput input, IServiceProvider sp) =>
+{
+    var enrichmentWorkflow = sp.GetKeyedService<Workflow>("book-enrichment-entry");
+
+    if (enrichmentWorkflow is null)
+        return Results.Problem("BookEnrichmentWorkflow not registered.");
+
+    // Run the workflow in the background so the HTTP call returns immediately
+    _ = Task.Run(async () =>
+    {
+        try
+        {
+            await BookEnrichmentWorkflowFactory.RunAndPrintAsync(enrichmentWorkflow, input);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[BookEnrichment] Unhandled error: {ex.GetType().Name}: {ex.Message}");
+            Console.WriteLine(ex.StackTrace);
+        }
+    });
+
+    return Results.Accepted();
+}).WithName("BookEnrichment").WithTags("BookStore");
+
 // ── Console demo ──────────────────────────────────────────────────────────────
 _ = Task.Run(async () =>
 {
@@ -62,7 +92,7 @@ _ = Task.Run(async () =>
     {
         Console.WriteLine("\n" + new string('═', 62));
         Console.WriteLine(" MVCAllOptions Agent Workflows — Demo");
-        Console.WriteLine(" DevUI → http://localhost:5000/devui");
+        Console.WriteLine(" DevUI → http://localhost:5001/devui");
         Console.WriteLine(new string('═', 62));
 
         var workflows = app.Services.GetServices<Workflow>().ToList();
@@ -86,7 +116,7 @@ _ = Task.Run(async () =>
         }
 
         Console.WriteLine("\n" + new string('═', 62));
-        Console.WriteLine(" Demo complete. DevUI still running at http://localhost:5000/devui");
+        Console.WriteLine(" Demo complete. DevUI still running at http://localhost:5001/devui");
         Console.WriteLine(" Press Ctrl+C to stop.");
         Console.WriteLine(new string('═', 62));
     }

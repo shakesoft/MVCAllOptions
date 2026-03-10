@@ -196,6 +196,8 @@ public class MVCAllOptionsWebModule : AbpModule
             });
         }
 
+        context.Services.AddHttpClient();
+
         ConfigureStudio(hostingEnvironment);
         ConfigureBundles(hostingEnvironment);
         ConfigureUrls(configuration);
